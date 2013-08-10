@@ -7,15 +7,16 @@
         "scripts/chef.sh",
         "scripts/puppet.sh",
         "scripts/vagrant.sh",
+        "scripts/hypervisor.sh",
         "scripts/cleanup.sh",
         "scripts/zerodisk.sh"
       ],
       "override": {
         "virtualbox": {
-          "execute_command": "echo 'veewee'|sudo -S sh '{{.Path}}'"
+          "execute_command": "echo 'packer'|sudo -S sh '{{.Path}}'"
         },
         "vmware": {
-          "execute_command": "echo 'veewee'|sudo -S sh '{{.Path}}'"
+          "execute_command": "echo 'packer'|sudo -S sh '{{.Path}}'"
         }
       }
     }
@@ -27,17 +28,17 @@
         "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"
       ],
       "boot_wait": "10s",
-      "disk_size": 10140,
+      "disk_size": 20480,
       "guest_os_type": "RedHat_64",
       "http_directory": "http",
       "iso_checksum": "4a5fa01c81cc300f4729136e28ebe600",
       "iso_checksum_type": "md5",
       "iso_url": "http://yum.singlehop.com/CentOS/6.4/isos/x86_64/CentOS-6.4-x86_64-minimal.iso",
-      "ssh_username": "veewee",
-      "ssh_password": "veewee",
+      "ssh_username": "packer",
+      "ssh_password": "packer",
       "ssh_port": 22,
       "ssh_wait_timeout": "10000s",
-      "shutdown_command": "echo '/sbin/halt -h -p' > shutdown.sh; echo 'veewee'|sudo -S sh 'shutdown.sh'",
+      "shutdown_command": "echo '/sbin/halt -h -p' > shutdown.sh; echo 'packer'|sudo -S sh 'shutdown.sh'",
       "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
       "virtualbox_version_file": ".vbox_version",
       "vboxmanage": [
@@ -45,7 +46,7 @@
           "modifyvm",
           "{{.Name}}",
           "--memory",
-          "480"
+          "512"
         ],
         [
           "modifyvm",
@@ -61,19 +62,20 @@
         "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"
       ],
       "boot_wait": "10s",
-      "disk_size": 10140,
+      "disk_size": 20480,
       "guest_os_type": "redhat",
       "http_directory": "http",
       "iso_checksum": "4a5fa01c81cc300f4729136e28ebe600",
       "iso_checksum_type": "md5",
       "iso_url": "http://yum.singlehop.com/CentOS/6.4/isos/x86_64/CentOS-6.4-x86_64-minimal.iso",
-      "ssh_username": "veewee",
-      "ssh_password": "veewee",
+      "tools_upload_flavor": "linux",
+      "ssh_username": "packer",
+      "ssh_password": "packer",
       "ssh_port": 22,
       "ssh_wait_timeout": "10000s",
-      "shutdown_command": "echo '/sbin/halt -h -p' > shutdown.sh; echo 'veewee'|sudo -S sh 'shutdown.sh'",
+      "shutdown_command": "echo '/sbin/halt -h -p' > shutdown.sh; echo 'packer'|sudo -S sh 'shutdown.sh'",
       "vmx_data": {
-        "memsize": "480",
+        "memsize": "512",
         "numvcpus": "1",
         "cpuid.coresPerSocket": "1"
       }
